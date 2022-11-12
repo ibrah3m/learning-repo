@@ -38,12 +38,13 @@ class DictionariesTableSeeder extends Seeder
             // $slug = Str::slug($location);
             $dicitonaryObject =  Dictionary::create(
                 [
-                    'Words' => $asset["words"],
+                    'Words' =>  $asset["words"],
                     
                 ]
             );
 
-            $dicitonaryObject->addMedia(database_path('/seeders/seedingImages/' . $asset["photo"] . '.jpg'))->toMediaCollection('photo');
+            $dicitonaryObject->addMedia(database_path('/seeders/seedingImages/' . $asset["photo"] . '.jpg'))->preservingOriginal()
+            ->toMediaCollection('photo');
         }
     }
 }
