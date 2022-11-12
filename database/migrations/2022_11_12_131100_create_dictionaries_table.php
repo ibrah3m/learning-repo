@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('dictionaries', function (Blueprint $table) {
             $table->id();
-            $table->string('Words');
+            $table->json('Words');
             $table->timestamps();
         });
     }
