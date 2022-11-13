@@ -21,7 +21,7 @@
                     <p><i class="icon-like"></i> {{ correct }} / {{ total }}</p>
                 </div>
                 <div class="col-6 text-center order-sm-first order-md-last order-lg-last order-xl-last">
-                    <p><i class="icon-dislike"></i>{{ wrong }} / {{ total }}</p>
+                    <p><i class="icon-dislike"></i> {{ wrong }} / {{ total }}</p>
                 </div>
             </div>
         </div>
