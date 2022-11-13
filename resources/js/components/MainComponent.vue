@@ -1,75 +1,123 @@
 <template>
-    <div class="container">
-        <div class="col" style="border-radius: 10px;background: var(--white);border-style: none;">
-            <div class="row d-xl-flex justify-content-xl-center" style="padding-top: 25px;">
-                <div class="col-5"><img class="img-fluid justify-content-xl-center" :src="CurrentModel.photo" style="border-radius: 10px;"></div>
-            </div>
-            <div class="row d-xl-flex justify-content-xl-center" style="padding-bottom: 25px;padding-top: 25px;">
-                <div class="col-5"><input class="form-control-plaintext" type="text" readonly="" value="vbcvbvc" style="text-align: center;font-family: Roboto, sans-serif;font-weight: bold;"></div>
-            </div>
-            <div class="row d-xl-flex">
-                <div class="col-6 offset-3" style="padding-bottom: 50px;"><input class="border rounded" type="text" style="box-shadow: -6px 6px 20px 0px #E7BEA3;font-family: Roboto, sans-serif;width: 100%;">
+    <section>
+        <div class="container border rounded" style="background: #ffffff;">
+            <div class="row d-flex d-xl-flex justify-content-center justify-content-xl-center"
+                style="padding-top: 25px;">
+                <div class="col-12"><img class="img-fluid justify-content-xl-center" :src="CurrentModel.photo"
+                        style="border-radius: 10px;"></div>
+                <div class="col-12 d-flex justify-content-center"><input class="form-control-plaintext" type="text"
+                        readonly=""  :value="CurrentModel.words.en"
+                        style="text-align: center;font-family: Roboto, sans-serif;font-weight: bold;"></div>
+                <div class="col-12" style="padding-bottom: 50px;"><input class="border rounded form-control-lg"
+                        type="text" v-model="inputwords"
+                        style="box-shadow: -6px 6px 20px 0px #E7BEA3;font-family: Roboto, sans-serif;width: 100%;">
                 </div>
-            </div>
-            <div class="row d-xl-flex justify-content-xl-center">
-                <div class="col-5 d-xl-flex justify-content-xl-center" style="padding-bottom: 25px;"><button class="btn btn-primary" type="button" @click="change()" style="background: #FF6700;width: 324px;font-family: Roboto;font-style: normal;font-weight: bold;">Button</button>
+                <div class="col-12 d-flex justify-content-center" style="padding-bottom: 25px;"><button
+                        class="btn btn-primary" type="button"  @click="check()"
+                        style="background: #FF6700;width: 324px;font-family: Roboto;font-style: normal;font-weight: bold;">Button</button>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-6 d-xl-flex justify-content-xl-center">
-                    <p><i class="icon-like"></i>Paragraph</p>
+                <div
+                    class="col-6 text-center order-last order-sm-first order-md-last order-lg-last order-xl-last order-xxl-last">
+                    <p><i class="icon-like"></i> {{ correct }} / {{ total }}</p>
                 </div>
-                <div class="col-6 d-xl-flex justify-content-xl-center">
-                    <p><i class="icon-dislike"></i>{{}}</p>
+                <div class="col-6 text-center order-sm-first order-md-last order-lg-last order-xl-last">
+                    <p><i class="icon-dislike"></i>{{ wrong }} / {{ total }}</p>
                 </div>
             </div>
         </div>
-    </div>
-</template>
+    </section>
+
+</template> 
 
 <script>
-    export default {
-        data() {
-            return {
-            input: '',
-            response:'',
-            CurrentModel:'',
-            randomNumber:0,
-            total: this.response.lenght,
-            correct:0,
-            wrong:0,
+
+export default {
+
+    data() {
+
+
+        return {
+            inputwords: '',
+            response: [],
+            CurrentModel: {
+                id: '',
+                photo: '',
+                words: {
+                    en: '',
+                    sr: '',
+
+                },
+            },
+            total: 0,
+            correct: 0,
+            wrong: 0,
+
+        }
+    },
+    props: ['route'],
+
+    created() {
+        axios.get(this.route)
+            .then((response) => {
+                this.response = response.data.data.map((item) => {
+                    return {
+                        id: item.id,
+                        words: item.words,
+                        photo: item.photo,
+                        answered: false,
+
+                    }
+                })
+                this.total = this.response.length
+
+                this.select()//Initally select random question to start
+            })
+
+
+    },
+
+    methods: {
+        check() {
+            if (typeof this.CurrentModel !== 'undefined' || variable !== null) {
+                if (
+                    this.CurrentModel.words.sr.toLowerCase() === this.inputwords.toLowerCase()) {
+                    this.correct++
+                }
+                else {
+
+                    this.wrong++
+                    console.log(this.CurrentModel.words.sr)
+                    console.log(this.inputwords)
+
+                }
+                this.change()
+                this.select()
+            }
+        }
+        ,
+        setrandomnumber(max) {
+            return Math.floor(Math.random() * max);
+        },
+        change() {
+            let currentIndex = this.response.findIndex(item => item.id == this.CurrentModel.id);
+            this.response[currentIndex].answered = true;
+
+
+        },
+        select() {
+
+            let filltered = this.response.filter((item) => item.answered == false)
+            if (filltered.length > 0) {
+                let random = this.setrandomnumber(filltered.length);
+                this.CurrentModel = filltered[random];//select next question randomly 
+            } else {
+                window.location.reload();//after finish all the question reload the page 
 
             }
-        }, 
-        props: ['route'],
- 
-        created() {
-               axios.get(this.route)
-                .then((response) => {
-                    this.response = response.data.data.map((item)=>{
-                        return { 
-                            id: item.id,
-                            words:item.words,
-                            photo:item.photo,
-                            answer:'',
 
-                        }
-                    })
-
-                })
-        
-            
-        },
-        methods: {
-        check() {
-           
-          }
-        ,
-        change() {
-            this.randomNumber = Math.floor(Math.random() * 12);
-            this.CurrentModel= this.response.filter((item)=>item.id === this.randomNumber)[0]
-          }
         },
 
-    }
+    },
+
+}
 </script>
