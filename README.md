@@ -1,4 +1,3 @@
-
 # LanguageLearner
 
 <div id="top"></div>
@@ -10,7 +9,7 @@
 
 <br />
 <div align="center">
-    <img src="logo.png" alt="Logo" width="80" height="80">
+    <img src="readme/logo.png" alt="Logo" width="80" height="80">
 </div>
 
 <h3 align="center">LEARN-WITH-LARAVEL</h3>
@@ -46,11 +45,9 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    
   </ol>
 </details>
 
@@ -175,7 +172,6 @@ Here we go almost finsih , now you can use the project let's see  .
    https://www.example.com
    ```
 
-_For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
