@@ -75,9 +75,9 @@ Read the rest to get started
 
 Frameworks/libraries used to build your project.
 
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [VueJs](https://vuejs.org)
+* [Laravel 9](https://laravel.com)
+* [Bootstrap 5](https://getbootstrap.com)
+* [VueJs 3](https://vuejs.org)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
