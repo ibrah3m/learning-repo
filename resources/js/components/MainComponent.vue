@@ -6,7 +6,7 @@
                 <div class="col-12"><img class="img-fluid justify-content-xl-center" :src="CurrentModel.photo"
                         style="border-radius: 10px;"></div>
                 <div class="col-12 d-flex justify-content-center"><input class="form-control-plaintext" type="text"
-                        readonly=""  :value="CurrentModel.words.en"
+                        readonly=""  :value="CurrentModel.words[CurrentModel.local]"
                         style="text-align: center;font-family: Roboto, sans-serif;font-weight: bold;"></div>
                 <div class="col-12" style="padding-bottom: 50px;"><input class="border rounded form-control-lg"
                         type="text" v-model="inputwords"
@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-12 d-flex justify-content-center" style="padding-bottom: 25px;"><button
                         class="btn btn-primary" type="button"  @click="check()"
-                        style="background: #FF6700;width: 324px;font-family: Roboto;font-style: normal;font-weight: bold;">Button</button>
+                        style="background: #FF6700;width: 324px;font-family: Roboto;font-style: normal;font-weight: bold;">Let's check</button>
                 </div>
                 <div
                     class="col-6 text-center order-last order-sm-first order-md-last order-lg-last order-xl-last order-xxl-last">
@@ -42,6 +42,7 @@ export default {
             CurrentModel: {
                 id: '',
                 photo: '',
+                local: '',
                 words: {
                     en: '',
                     sr: '',
@@ -60,11 +61,13 @@ export default {
         axios.get(this.route)
             .then((response) => {
                 this.response = response.data.data.map((item) => {
+                    let local=['en','sr']//better if this  come from controller
                     return {
                         id: item.id,
                         words: item.words,
                         photo: item.photo,
                         answered: false,
+                        local: local[this.setrandomnumber(local.length)]
 
                     }
                 })
@@ -80,17 +83,18 @@ export default {
         check() {
             if (typeof this.CurrentModel !== 'undefined' || variable !== null) {
                 if (
-                    this.CurrentModel.words.sr.toLowerCase() === this.inputwords.toLowerCase()) {
+                   (this.CurrentModel.local ==="sr" && this.CurrentModel.words.en.toLowerCase() === this.inputwords.toLowerCase()) || (this.CurrentModel.local =="en" && this.CurrentModel.words.sr.toLowerCase() === this.inputwords.toLowerCase())
+                   ) {
+                    this.change()
                     this.correct++
                 }
                 else {
 
                     this.wrong++
-                    console.log(this.CurrentModel.words.sr)
-                    console.log(this.inputwords)
+                   
 
                 }
-                this.change()
+                
                 this.select()
             }
         }

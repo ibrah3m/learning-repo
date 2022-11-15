@@ -20838,6 +20838,7 @@ __webpack_require__.r(__webpack_exports__);
       CurrentModel: {
         id: '',
         photo: '',
+        local: '',
         words: {
           en: '',
           sr: ''
@@ -20853,11 +20854,13 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
     axios.get(this.route).then(function (response) {
       _this.response = response.data.data.map(function (item) {
+        var local = ['en', 'sr']; //better if this  come from controller
         return {
           id: item.id,
           words: item.words,
           photo: item.photo,
-          answered: false
+          answered: false,
+          local: local[_this.setrandomnumber(local.length)]
         };
       });
       _this.total = _this.response.length;
@@ -20868,14 +20871,12 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     check: function check() {
       if (typeof this.CurrentModel !== 'undefined' || variable !== null) {
-        if (this.CurrentModel.words.sr.toLowerCase() === this.inputwords.toLowerCase()) {
+        if (this.CurrentModel.local === "sr" && this.CurrentModel.words.en.toLowerCase() === this.inputwords.toLowerCase() || this.CurrentModel.local == "en" && this.CurrentModel.words.sr.toLowerCase() === this.inputwords.toLowerCase()) {
+          this.change();
           this.correct++;
         } else {
           this.wrong++;
-          console.log(this.CurrentModel.words.sr);
-          console.log(this.inputwords);
         }
-        this.change();
         this.select();
       }
     },
@@ -20974,7 +20975,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "form-control-plaintext",
     type: "text",
     readonly: "",
-    value: $data.CurrentModel.words.en,
+    value: $data.CurrentModel.words[$data.CurrentModel.local],
     style: {
       "text-align": "center",
       "font-family": "Roboto, sans-serif",
@@ -21004,7 +21005,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "font-style": "normal",
       "font-weight": "bold"
     }
-  }, "Button")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.correct) + " / " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.total), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.wrong) + " / " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.total), 1 /* TEXT */)])])])])]);
+  }, "Let's check")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.correct) + " / " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.total), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.wrong) + " / " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.total), 1 /* TEXT */)])])])])]);
 }
 
 /***/ }),
