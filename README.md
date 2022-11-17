@@ -2,7 +2,7 @@
 
 <div id="top"></div>
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://gitlab.weborigo.eu/interview-tasks/full-stack/medior/ibrahim-duleymioglu/-/tree/20221112_dev-ibrahim-duleymioglu)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ibrah3m/learning-repo/ibrahim-duleymioglu/tree/20221112_dev-ibrahim-duleymioglu)
 
 
 <!-- PROJECT LOGO -->
