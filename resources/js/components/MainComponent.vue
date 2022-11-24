@@ -1,20 +1,20 @@
 <template>
     <section>
-        <div class="container border rounded" style="background: #ffffff;">
-            <div class="row d-flex d-xl-flex justify-content-center justify-content-xl-center"
-                style="padding-top: 25px;">
-                <div class="col-12"><img class="img-fluid justify-content-xl-center" :src="CurrentModel.photo"
-                        style="border-radius: 10px;"></div>
-                <div class="col-12 d-flex justify-content-center"><input class="form-control-plaintext" type="text"
+        <div class="container border rounded MaincomponentContainerDiv" >
+            <div class="row d-flex d-xl-flex justify-content-center justify-content-xl-center MaincomponentContainerrow"
+                >
+                <div class="col-12"><img class="img-fluid justify-content-xl-center MaincomponentContainerimg" :src="CurrentModel.photo"
+                        ></div>
+                <div class="col-12 d-flex justify-content-center MaincomponentContainerplaintext"><input class="form-control-plaintext" type="text"
                         readonly=""  :value="CurrentModel.words[CurrentModel.local]"
-                        style="text-align: center;font-family: Roboto, sans-serif;font-weight: bold;"></div>
-                <div class="col-12" style="padding-bottom: 50px;"><input class="border rounded form-control-lg"
+                        ></div>
+                <div class="col-12 MaincomponentContainerinputwords" style="padding-bottom: 50px;"><input class="border rounded form-control-lg"
                         type="text" v-model="inputwords"
-                        style="box-shadow: -6px 6px 20px 0px #E7BEA3;font-family: Roboto, sans-serif;width: 100%;">
+                        >
                 </div>
-                <div class="col-12 d-flex justify-content-center" style="padding-bottom: 25px;"><button
+                <div class="col-12 d-flex justify-content-center MaincomponentContainerbutton" style="padding-bottom: 25px;"><button
                         class="btn btn-primary" type="button"  @click="check()"
-                        style="background: #FF6700;width: 324px;font-family: Roboto;font-style: normal;font-weight: bold;">Let's check</button>
+                        >Let's check</button>
                 </div>
                 <div
                     class="col-6 text-center order-last order-sm-first order-md-last order-lg-last order-xl-last order-xxl-last">
@@ -27,7 +27,7 @@
         </div>
     </section>
 
-</template> 
+</template>
 
 <script>
 
@@ -91,10 +91,10 @@ export default {
                 else {
 
                     this.wrong++
-                   
+
 
                 }
-                
+
                 this.select()
             }
         }
@@ -113,9 +113,9 @@ export default {
             let filltered = this.response.filter((item) => item.answered == false)
             if (filltered.length > 0) {
                 let random = this.setrandomnumber(filltered.length);
-                this.CurrentModel = filltered[random];//select next question randomly 
+                this.CurrentModel = filltered[random];//select next question randomly
             } else {
-                window.location.reload();//after finish all the question reload the page 
+                window.location.reload();//after finish all the question reload the page
 
             }
 
