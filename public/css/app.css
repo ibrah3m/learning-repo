@@ -1,1 +1,34 @@
+.MaincomponentContainerDiv {
+
+    background: #ffffff;
+}
+.MaincomponentContainerDiv > .MaincomponentContainerrow {
+    padding-top: 25px;
+}
+
+.MaincomponentContainerDiv > .MaincomponentContainerimg {
+
+    border-radius: 10px;
+}
+.MaincomponentContainerDiv > .MaincomponentContainerplaintext {
+
+    text-align: center;font-family: Roboto, sans-serif;font-weight: bold;
+
+}
+.MaincomponentContainerDiv > .MaincomponentContainerinputwords {
+
+    box-shadow: -6px 6px 20px 0px #E7BEA3;
+    font-family: Roboto, sans-serif;
+    width: 100%;
+
+}
+.MaincomponentContainerDiv > .MaincomponentContainerbutton {
+
+    background: #FF6700;
+    width: 324px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+
+}
 
