@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,500,500i,700,700i,900,900i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
     <script src="{{mix('/js/app.js')}}"></script>
+    <script src="{{mix('/css/app.css')}}"></script>
+
     <style>
         div {
             padding: 15px 0
