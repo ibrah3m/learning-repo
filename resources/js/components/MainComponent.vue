@@ -81,22 +81,33 @@ export default {
 
     methods: {
         check() {
-            if (typeof this.CurrentModel !== 'undefined' || variable !== null) {
+        
+                if (typeof this.CurrentModel === 'undefined' || variable === null) {
+                    return;
+                }
+
+                // comment what this is doing
                 if (
-                   (this.CurrentModel.local ==="sr" && this.CurrentModel.words.en.toLowerCase() === this.inputwords.toLowerCase()) || (this.CurrentModel.local =="en" && this.CurrentModel.words.sr.toLowerCase() === this.inputwords.toLowerCase())
-                   ) {
-                    this.change()
-                    this.correct++
+                    this.CurrentModel.local ==="sr" && 
+                    this.CurrentModel.words.en.toLowerCase() === this.inputwords.toLowerCase()
+                ) {
+                    this.change();
+                    this.correct++;
+                } 
+                // whats this condition doing? idk
+                else if(
+                    this.CurrentModel.local =="en" && 
+                    this.CurrentModel.words.sr.toLowerCase() === this.inputwords.toLowerCase()
+                ) {
+                    this.change();
+                    this.correct++;
                 }
                 else {
-
                     this.wrong++
-
-
                 }
 
                 this.select()
-            }
+            
         }
         ,
         setrandomnumber(max) {
